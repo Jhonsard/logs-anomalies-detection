@@ -1,8 +1,13 @@
 """ Script pour lire le fichier des logs genenrers ou le feature engineering"""
+import os
+import sys
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
+
+sys.path.append(os.getcwd())
+from logs.constant import Constants as cts
 
 
 class LogPreprocessor:
@@ -97,6 +102,21 @@ class LogPreprocessor:
         
         return X_processed, X
 
+    def split_dataset(self, df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+        """
+            Separe notre dataset en deux parties:
+            - les données d'entrainement
+            - les donnees de test
+        """
+        # melange de nos donnes dans le dataset avec le shufling method
+        df = df.sample(n=len(df)) # melange tout le dataframe
+
+        train_test_size = cts.TRAIN_SET_RATIO * len(df)
+
+        df_train = df.iloc[:int(train_test_size)]
+        df_test = df.iloc[int(train_test_size):]
+
+        return df_train, df_test
 
 if __name__ == '__main__':
     df = pd.read_csv('data/logs_dataset.csv', skipinitialspace=True)

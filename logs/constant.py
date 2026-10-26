@@ -31,3 +31,9 @@ class Constants:
     
     # fichier de sortie pour le dataset de logs
     LOGS_DATASET_FILE_NAME: str = "data/logs_dataset.csv"
+
+    # ratio de separation entre l'entrainement et le test
+    TRAIN_SET_RATIO: float = 0.85 # entrainement = 85% du dataset
+
+    ISOLATION_FOREST_MODEL_PATH: str = "models/isolation_forest.pkl"
+    ONE_CLASS_SVM_MODEL_PATH: str = "models/one_class_svm.pkl"

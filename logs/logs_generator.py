@@ -1,11 +1,14 @@
 """
     Script pour generer mes logs
 """
+import os
+import sys
 import faker
 from datetime import datetime, timedelta
 import random
 
-from constant import Constants as cts
+sys.path.append(os.getcwd())
+from logs.constant import Constants as cts
 
 # methode pour generer le pas de temps entre les logs
 def generate_datetimes(start_date: datetime, end_date: datetime, number_logs: int) -> list[datetime]:
@@ -95,7 +98,7 @@ def generate_logs_dataset(
     )
     
     with open(logs_dataset_file_name, "w") as f:
-        f.write("timestamp, user_ip, methode, status_code, endpoint, response_time\n")
+        f.write("timestamp,user_ip,methode,status_code,endpoint,response_time\n")
 
         for i in range(number_of_logs):
             timestamp_i = timestamp[i]
