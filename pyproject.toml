@@ -1,0 +1,21 @@
+[project]
+name = "logs-anomalies-detection"
+version = "0.1.0"
+description = "machine learning project"
+authors = [
+    {name = "jhonsard",email = "jhonsardm@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pandas (>=3.1.0,<4.0.0)",
+    "numpy (>=2.5.4,<3.0.0)",
+    "scikit-learn (>=1.9.1,<2.0.0)",
+    "matplotlib (>=3.11.2,<4.0.0)",
+    "faker (>=40.43.0,<41.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
