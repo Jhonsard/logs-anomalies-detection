@@ -1,3 +1,6 @@
+"""
+    Script pour generer mes logs
+"""
 import faker
 from datetime import datetime, timedelta
 import random
@@ -95,7 +98,7 @@ def generate_logs_dataset(
         f.write("timestamp, user_ip, methode, status_code, endpoint, response_time\n")
 
         for i in range(number_of_logs):
-            timestamps = timestamp[i]
+            timestamp_i = timestamp[i]
             user_ip = fak.ipv4()
             methode = random.choice(http_methods)
             status_code = random.choice(http_normal_status_codes)
@@ -121,10 +124,10 @@ def generate_logs_dataset(
                         status_code = random.choice(http_error_status_codes["rate_limit"])
 
                     else:
-                        status_code = random.choice(http_error_status_codes.values())[0]
+                        status_code = random.choice(listcl(http_error_status_codes.values()))[0]
                         response_time = random.randint(1000, 5000)
             
-            f.write(f"{timestamps}, {user_ip}, {methode}, {status_code}, {endpoint}, {response_time}\n")
+            f.write(f"{timestamp_i},{user_ip},{methode},{status_code},{endpoint},{response_time}\n")
     print(f"[OK] le fichier csv {logs_dataset_file_name} a été généré avec {number_of_logs} logs et {number_of_anomaly_intervals}",
           f"et {number_of_anomaly_intervals} plage d'anomalies.")
 
